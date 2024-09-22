@@ -1,6 +1,6 @@
 @extends('layout.base')
 
-@section('title', 'Genap Ganjil')
+@section('title', 'Fibonacci')
 
 @section('content')
 <h1>Masukkan Angka</h1>
@@ -23,12 +23,10 @@
             @foreach($numberDetails as $detail)
                 <tr>
                     <td>{{ $detail['number'] }}</td>
-                    <td>{{ $detail['type'] }}</td>
+                    <td>{{ $detail['result'] }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 @endif
 @endsection
-
-

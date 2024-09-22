@@ -1,6 +1,6 @@
 @extends('layout.base')
 
-@section('title', 'Routing Parameter')
+@section('title', 'Route Parameters')
 
 @section('content')
 <div class="card mb-4">
@@ -46,7 +46,7 @@
     document.getElementById('form1').addEventListener('submit', function(e) {
         e.preventDefault();
         const param1 = document.getElementById('param1').value;
-        const url = `{{ url('/pertemuan1/param') }}/${param1}`;
+        const url = `{{ url('/Tugas1/param') }}/${param1}`;
         window.location.href = url;
     });
 
@@ -54,7 +54,7 @@
         e.preventDefault();
         const param1 = document.getElementById('param1-2').value;
         const param2 = document.getElementById('param2-2').value;
-        const url = `{{ url('/pertemuan1/param') }}/${param1}/${param2}`;
+        const url = `{{ url('/Tugas1/param') }}/${param1}/${param2}`;
         window.location.href = url; 
     });
 </script> --}}
@@ -71,14 +71,14 @@
 
         function updatePreview1() {
             const param1 = encodeURIComponent(param1Input.value);
-            const previewUrl1 = `{{ url('/pertemuan1/param') }}/${param1}`;
+            const previewUrl1 = `{{ url('/Tugas1/param') }}/${param1}`;
             preview1Span.textContent = previewUrl1;
         }
 
         function updatePreview2() {
             const param1 = encodeURIComponent(param1Input2.value);
             const param2 = encodeURIComponent(param2Input2.value);
-            const previewUrl2 = `{{ url('/pertemuan1/param') }}/${param1}/${param2}`;
+            const previewUrl2 = `{{ url('/Tugas1/param') }}/${param1}/${param2}`;
             preview2Span.textContent = previewUrl2;
         }
 
@@ -89,7 +89,7 @@
         form1.addEventListener('submit', function(e) {
             e.preventDefault();
             const param1 = encodeURIComponent(param1Input.value);
-            const url = `{{ url('/pertemuan1/param') }}/${param1}`;
+            const url = `{{ url('/Tugas1/param') }}/${param1}`;
             window.location.href = url;
         });
 
@@ -97,7 +97,7 @@
             e.preventDefault();
             const param1 = encodeURIComponent(param1Input2.value);
             const param2 = encodeURIComponent(param2Input2.value);
-            const url = `{{ url('/pertemuan1/param') }}/${param1}/${param2}`;
+            const url = `{{ url('/Tugas1/param') }}/${param1}/${param2}`;
             window.location.href = url;
         });
 

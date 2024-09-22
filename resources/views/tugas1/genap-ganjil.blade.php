@@ -1,6 +1,6 @@
 @extends('layout.base')
 
-@section('title', 'Bilangan Prima')
+@section('title', 'Genap Ganjil')
 
 @section('content')
 <h1>Masukkan Angka</h1>
@@ -30,5 +30,3 @@
     </table>
 @endif
 @endsection
-
-
