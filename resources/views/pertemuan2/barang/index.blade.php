@@ -1,7 +1,6 @@
 @extends('layout.base')
 
-
-@section('title', 'List Buku')
+@section('title', 'List Barang')
 
 @section('content')
 
@@ -17,10 +16,10 @@
             @endif
         </div>
         <div class="d-flex flex-column flex-md-row gap-2 mb-md-0 mb-2">
-            <form action="{{ route('crud-buku.index') }}" method="GET" class="mr-md-2 mr-0 mb-2 mb-md-0 flex-grow-1">
+            <form action="{{ route('crud-barang.index') }}" method="GET" class="mr-md-2 mr-0 mb-2 mb-md-0 flex-grow-1">
                 <div class="input-group ">
                     <input type="text" name="search" class="form-control" id="search"
-                        placeholder="id, judul, penulis, penerbit, isbn, kategori, deskripsi etc."
+                        placeholder="id, kode, nama, stok, harga, kategori, etc."
                         value="{{ request()->get('search') }}">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-primary">Cari</button>
@@ -28,11 +27,11 @@
                 </div>
             </form>
             <div class="d-flex">
-                {{ $data['buku']->appends(['search' => request()->get('search'), 'limit' => request()->get('limit')])->links() }}
+                {{ $data['barang']->appends(['search' => request()->get('search'), 'limit' => request()->get('limit')])->links() }}
                 <div class="ml-2">
-                    <a href="{{ route('crud-buku.create') }}" class="text-white">
+                    <a href="{{ route('crud-barang.create') }}" class="text-white">
                         <button class="btn btn-success">
-                            Tambah Buku
+                            Tambah Barang
                         </button>
                     </a>
                 </div>
@@ -40,48 +39,44 @@
 
         </div>
         <div class="overflow-auto">`
-            <table id="bukuTable" class="table table-bordered">
+            <table id="barangTable" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>Judul</th>
-                        <th>Penulis</th>
-                        <th>Penerbit</th>
-                        <th>Tahun Terbit</th>
-                        <th>Jumlah Halaman</th>
-                        <th>ISBN</th>
+                        <th>Kode</th>
+                        <th>Nama</th>
+                        <th>Stok</th>
+                        <th>Harga</th>
                         <th>Kategori</th>
-                        <th>Deskripsi</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($data['buku'] as $b)
+                    @forelse ($data['barang'] as $b)
                         <tr>
                             <td>
                                 {{ $b->id }}
                             </td>
                             <td>
-                                <a href="{{ route('crud-buku.show', $b->id) }}">
-                                    {{ Str::limit($b->judul, 20, '...') }}
+                                <a href="{{ route('crud-barang.show', $b->id) }}">
+                                    {{ Str::limit($b->kode, 20, '...') }}
                                 </a>
                             </td>
-                            <td>{{ $b->penulis }}</td>
-                            <td>{{ $b->penerbit }}</td>
-                            <td>{{ $b->tahun_terbit }}</td>
-                            <td>{{ $b->jumlah_halaman }}</td>
-                            <td>{{ $b->isbn }}</td>
+                            <td>{{ $b->nama }}</td>
+                            <td>{{ $b->stok }}</td>
+                            <td>{{ $b->harga }}</td>
                             <td>
                                 @foreach ($b->kategoris as $kategori)
-                                    <span class="badge badge-primary">{{ $kategori->nama }}</span>
+                                    <span>{{ $kategori->nama }}</span>
                                     <!-- Adjust field name as needed -->
                                 @endforeach
                             </td>
-                            <td>{{ Str::limit($b->deskripsi, 30, '...') }}</td>
                             <td class="d-flex">
-                                <a href="{{ route('crud-buku.edit', $b->id) }}"
+                                <a href="{{ route('crud-barang.show', $b->id) }}"
+                                    class="btn btn-primary btn-sm mr-2">Lihat Detail</a>
+                                <a href="{{ route('crud-barang.edit', $b->id) }}"
                                     class="btn btn-primary btn-sm mr-2">Edit</a>
-                                <form class="border-0" action="{{ route('crud-buku.destroy', $b->id) }}" method="POST"
+                                <form class="border-0" action="{{ route('crud-barang.destroy', $b->id) }}" method="POST"
                                     style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')
@@ -118,7 +113,7 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#bukuTable').DataTable({
+            $('#barangTable').DataTable({
                 responsive: true
                 paging: false,
                 searching: false,

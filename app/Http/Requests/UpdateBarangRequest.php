@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateBukuRequest extends FormRequest
+class UpdateBarangRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,23 +23,15 @@ class UpdateBukuRequest extends FormRequest
     public function rules()
     {
         // Get the current Buku instance from the route
-        $bukuId = $this->route('buku')->id;
+        $barangId = $this->route('barang')->id;
 
         return [
-            'judul' => 'required|string|max:255',
-            'penulis' => 'required|string|max:255',
-            'penerbit' => 'required|string|max:255',
-            'tahun_terbit' => 'nullable|integer',
-            'jumlah_halaman' => 'nullable|integer',
-            'isbn' => [
-                'required',
-                'string',
-                'max:13',
-                Rule::unique('buku', 'isbn')->ignore($bukuId),
-            ],
+            'kode' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
+            'stok' => 'required|numeric',
+            'harga' => 'required|numeric',
             'kategori' => 'required|array',
             'kategori.*' => 'exists:kategori,id',
-            'deskripsi' => 'nullable|string',
         ];
     }
 }
