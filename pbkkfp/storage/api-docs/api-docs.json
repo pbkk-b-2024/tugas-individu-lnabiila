@@ -1,0 +1,138 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentation of My APIs",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/types": {
+            "get": {
+                "tags": [
+                    "Type"
+                ],
+                "summary": "Get List of Types",
+                "description": "Fetches all available food types",
+                "operationId": "getTypes",
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieval of types"
+                    },
+                    "404": {
+                        "description": "No types found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Type"
+                ],
+                "summary": "Store type",
+                "description": "To Make New Type of Food",
+                "operationId": "types/store",
+                "requestBody": {
+                    "description": "form type",
+                    "required": true
+                },
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/types/{id}": {
+            "get": {
+                "tags": [
+                    "Type"
+                ],
+                "summary": "Get a specific type",
+                "description": "Retrieve a single type by ID",
+                "operationId": "getTypeById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the type",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieval of the type"
+                    },
+                    "404": {
+                        "description": "Type not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Type"
+                ],
+                "summary": "Update a type",
+                "description": "Edit an existing food type by ID",
+                "operationId": "updateType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the type to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Type data to update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Type updated successfully"
+                    },
+                    "404": {
+                        "description": "Type not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Type"
+                ],
+                "summary": "Delete Type",
+                "description": "Delete Type of Food",
+                "operationId": "types",
+                "responses": {
+                    "default": {
+                        "description": "return array model for type"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Type",
+            "description": "Type"
+        }
+    ]
+}
